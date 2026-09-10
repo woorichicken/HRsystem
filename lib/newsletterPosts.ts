@@ -37,6 +37,125 @@ const CTA: Block = {
 
 export const NEWSLETTER_POSTS: NewsletterPost[] = [
   {
+    slug: "ax-consulting-seminar-2026-09",
+    title:
+      "[FAIR인사노무컨설팅 주최] AX 컨설팅 세미나 안내 — AI를 사용하는 것에서, 일을 다시 설계하는 것으로",
+    summary:
+      "AX 컨설팅 실무과정을 시작합니다. AI Tool을 먼저 고르는 것이 아니라 기업의 실제 업무 프로세스부터 다시 설계하는 방식입니다. 2026년 9월 11일 20시, 은평구 파크앤타워 L층 회의실에서 진행하며 신청은 fairhr@nate.com으로 받습니다.",
+    date: "2026-09-10",
+    body: [
+      AUTHOR_BIO,
+
+      { type: "h2", text: "세미나 개요" },
+      {
+        type: "ul",
+        items: [
+          "**일시** — 2026년 9월 11일 20시",
+          "**장소** — 은평구 파크앤타워 L층 회의실",
+          "**강사** — FAIR인사노무컨설팅 대표 정광일",
+          "**참여방법** — fairhr@nate.com으로 신청해 주시기 바랍니다.",
+        ],
+      },
+
+      { type: "p", text: "AX 컨설팅 실무과정을 시작합니다." },
+      {
+        type: "p",
+        text: "요즘 기업 현장에서 AI를 활용하는 사례는 빠르게 늘고 있습니다. 회의록 작성, 문서 요약, 보고서 작성, 채용 지원, 고객응대 등 이제 AI를 업무에 활용하는 것 자체는 특별한 일이 아니게 되었습니다. 그런데 최근 기업 자문과 프로젝트를 진행하면서 한 가지 질문을 자주 하게 됩니다.",
+      },
+      { type: "p", text: "“AI를 많이 사용하면 정말 회사가 바뀌는 것일까?”" },
+      {
+        type: "p",
+        text: "저는 반드시 그렇지는 않다고 생각합니다. AI를 몇 개의 업무에 적용하는 것과, 회사의 업무방식 자체를 AI 시대에 맞게 다시 설계하는 것은 다른 문제이기 때문입니다. 이러한 관점이 바로 **AX(AI Transformation)**입니다.",
+      },
+
+      { type: "h2", text: "AX 컨설팅은 무엇이 다른가?" },
+      {
+        type: "p",
+        text: "AX 컨설팅에서는 먼저 AI Tool을 고르지 않습니다. 먼저 기업의 실제 업무를 살펴봅니다.",
+      },
+      {
+        type: "p",
+        text: `예를 들어 채용업무라면,
+채용 요청 → 채용공고 → 지원자 검토 → 면접 → 평가 → 채용결정 → 입사
+라는 전체 Process(프로세스)를 살펴본 뒤,`,
+      },
+      {
+        type: "ul",
+        items: [
+          "없애도 되는 업무는 무엇인지",
+          "AI가 수행할 업무는 무엇인지",
+          "사람과 AI가 함께 해야 할 업무는 무엇인지",
+          "반드시 사람이 판단해야 하는 업무는 무엇인지",
+        ],
+      },
+      { type: "p", text: "를 다시 설계합니다." },
+      {
+        type: "p",
+        text: "그 이후에 필요한 AI, HR Tech, Data, System을 선택합니다.",
+      },
+      {
+        type: "p",
+        text: `즉,
+AI 도입이 먼저가 아니라
+**Business Process(업무 프로세스) 재설계가 먼저입니다.**`,
+      },
+
+      { type: "h2", text: "AX Consulting(AX 컨설팅) 실무과정을 진행합니다" },
+      { type: "p", text: "단순히 AI 사용법을 배우는 모임이 아닙니다." },
+      { type: "p", text: "실제 기업을 대상으로 한다는 생각으로," },
+      {
+        type: "ul",
+        items: [
+          "Business Problem(경영문제) 정의",
+          "Business Domain(업무영역) 분석",
+          "Domain Reimagination(업무 재설계)",
+          "AI Opportunity(AI 적용기회) 발굴",
+          "Capability Assessment(역량진단)",
+          "Business Case(사업타당성)",
+          "Execution Roadmap(실행 로드맵)",
+        ],
+      },
+      { type: "p", text: "까지 직접 만들어보는 방식입니다." },
+      {
+        type: "p",
+        text: "기본 참고도서로는 McKinsey의 **《REWIRED》**를 활용하고 있습니다.",
+      },
+      { type: "p", text: "이 책에서 제가 특히 공감하는 메시지는 이것입니다." },
+      {
+        type: "p",
+        text: "Use Case를 많이 만드는 것이 Transformation은 아니다.",
+      },
+      {
+        type: "p",
+        text: "결국 중요한 것은 어떤 AI를 쓰느냐보다 기업의 중요한 Business Domain을 End-to-End로 어떻게 다시 설계하느냐입니다.",
+      },
+
+      { type: "h2", text: "HR에서도 AX는 이미 중요한 과제입니다" },
+      {
+        type: "p",
+        text: "최근 제가 특히 관심을 갖고 있는 분야는 **HR AX**입니다. 채용, 평가, 교육, 근태, 급여, 인사노무, HR Data 등은 AI를 적용할 수 있는 영역이 매우 많습니다. 하지만 단순히 HR Tech를 추가하는 것만으로는 부족합니다.",
+      },
+      {
+        type: "p",
+        text: "사람이 해야 할 일, AI가 해야 할 일, 사람과 AI가 함께 해야 할 일을 다시 구분하는 것, 그리고 그것을 실제 업무 프로세스에 연결하는 것이 중요합니다.",
+      },
+      {
+        type: "p",
+        text: "앞으로 HR의 경쟁력도 결국 좋은 AI Tool을 얼마나 많이 보유했느냐가 아니라, **사람과 AI가 함께 일하는 구조를 얼마나 잘 설계했느냐**에서 결정될 가능성이 높다고 생각합니다.",
+      },
+
+      {
+        type: "p",
+        text: `▶ 함께 읽기 — AX 컨설팅과 HR Tech, 무엇이 다른가: https://www.fairhr.net/newsletter/ax-consulting-and-hr-tech`,
+      },
+      {
+        type: "p",
+        text: "#AX #AX컨설팅 #AITransformation #REWIRED #HRTech #HRAX #생성형AI #업무혁신 #경영혁신 #디지털전환",
+      },
+      CTA,
+    ],
+  },
+  {
     slug: "ax-consulting-and-hr-tech",
     title: "AX 컨설팅과 HR Tech, 무엇이 다른가 — 채용은 이미 고영향 인공지능 영역입니다",
     summary:
