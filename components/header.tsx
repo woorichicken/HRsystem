@@ -97,6 +97,13 @@ export default function Header() {
           title: t('fairCrmMenu.crm.title'),
           description: t('fairCrmMenu.crm.description'),
         },
+        // AX 컨설팅 — CRM 과 플러스 티 에이아이 사이 (CEO 지시 2026-09-11).
+        // 순서에 뜻이 있다: 쌓는 쪽(CRM) → 다시 설계하는 쪽(AX) → 만드는 쪽(플러스 티 에이아이).
+        {
+          href: "/hr-tech/ax-consulting",
+          title: t('fairCrmMenu.axConsulting.title'),
+          description: t('fairCrmMenu.axConsulting.description'),
+        },
         {
           href: "/plustai",
           title: t('fairCrmMenu.plustai.title'),
