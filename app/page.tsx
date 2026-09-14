@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import HomePageClient from "./HomePageClient"
 import StructuredData from "@/components/seo/structured-data"
-import { homeFaqJsonLd, organizationJsonLd, pageMetadata, websiteJsonLd, SITE_TITLE } from "@/lib/seo"
+import { homeFaqJsonLd, organizationJsonLd, pageMetadata, representativeJsonLd, websiteJsonLd, SITE_TITLE } from "@/lib/seo"
 
 export const metadata: Metadata = pageMetadata({
   // ⚠️ 홈 제목은 여기가 최종이다 — layout.tsx 의 title.default 를 덮어쓴다.
@@ -14,7 +14,14 @@ export const metadata: Metadata = pageMetadata({
 export default function NewHomePage() {
   return (
     <>
-      <StructuredData data={[organizationJsonLd, websiteJsonLd, homeFaqJsonLd]} />
+      <StructuredData
+        data={[
+          organizationJsonLd,
+          representativeJsonLd,
+          websiteJsonLd,
+          homeFaqJsonLd,
+        ]}
+      />
       <HomePageClient />
     </>
   )

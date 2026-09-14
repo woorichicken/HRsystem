@@ -95,17 +95,45 @@ export function pageMetadata({
   }
 }
 
+// 조직·대표 엔티티의 정본 식별자.
+//
+// ⚠️ **글로벌 HR 자문 포털(global.fairhr.net)의 `src/lib/seo/jsonLd.ts` 와 짝을 이룬다**
+//    (2026-09-14 신설). 두 사이트가 **같은 `@id` 로 같은 조직을 선언**해야 검색엔진과
+//    AI 가 하나의 엔티티로 합친다. 한쪽만 고치면 오히려 별개 주체로 갈라지므로
+//    아래 세 값(ORG_ID·REP_ID·FAIR_SAME_AS)은 양쪽을 함께 고칠 것.
+export const FAIR_ORG_ID = `${SITE_URL}/#organization`
+export const FAIR_REP_ID = `${SITE_URL}/#rep`
+
+// 같은 주체가 운영하는 웹 표면. `sameAs` 는 "동일 주체"라는 주장이므로 직접 운영하는 것만 넣는다.
+// ⚠️ PlusTAI 계열은 **독립 자회사**라 넣지 않는다(위 포지셔닝 주석과 같은 기준).
+//    법인 관계를 표현하려면 다른 속성이 필요한데, 그건 CEO 확인 사항이다.
+export const FAIR_SAME_AS = [
+  "https://www.fairhr.net",
+  "https://global.fairhr.net",
+  "https://blog.naver.com/fairhr",
+]
+
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": ["ProfessionalService", "LegalService"],
-  "@id": `${SITE_URL}/#organization`,
+  "@id": FAIR_ORG_ID,
   name: SITE_NAME,
+  alternateName: "FAIR HR Consulting",
   url: SITE_URL,
   description: SITE_DESCRIPTION,
   telephone: "02-387-9869",
   email: "fairhr@nate.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress:
+      "서울특별시 은평구 진관3로 32, 4층 비412호(진관동, 은평뉴타운파크앤타워)",
+    addressLocality: "서울특별시",
+    addressCountry: "KR",
+  },
   areaServed: "KR",
   inLanguage: "ko-KR",
+  founder: { "@id": FAIR_REP_ID },
+  sameAs: FAIR_SAME_AS,
   knowsAbout: [
     "인사노무 자문",
     "임금 및 근로시간 관리",
@@ -116,6 +144,19 @@ export const organizationJsonLd = {
   ],
 }
 
+// 대표 노무사 노드.
+// ⚠️ 화면에 이미 공개된 사실만 적는다(성명·직함·소속). 경력 연수·출신은 표기 기준이
+//    따로 있는 항목이라(이력 기준 표기) 구조화 데이터에 숫자로 박지 않는다.
+export const representativeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": FAIR_REP_ID,
+  name: "정광일",
+  jobTitle: "공인노무사",
+  worksFor: { "@id": FAIR_ORG_ID },
+  url: `${SITE_URL}/about/greeting`,
+}
+
 export const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -123,7 +164,7 @@ export const websiteJsonLd = {
   name: SITE_NAME,
   url: SITE_URL,
   inLanguage: "ko-KR",
-  publisher: { "@id": `${SITE_URL}/#organization` },
+  publisher: { "@id": FAIR_ORG_ID },
   potentialAction: {
     "@type": "SearchAction",
     target: `${SITE_URL}/board?search={search_term_string}`,
