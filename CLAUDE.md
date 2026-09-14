@@ -42,6 +42,19 @@ C-3 관문이 경고하지만 그 목록은 저장소 밖 파일의 사본(`.git
 빌드는 `OPENAI_API_KEY` 자리표시자로 통과한다(`app/api/ai/generate-post` 가 모듈 로드 시
 클라이언트를 만들기 때문). 실제 키는 Vercel 환경변수에만 둔다.
 
+## 구조화 데이터는 글로벌 포털과 짝이다 (2026-09-14 신설)
+
+`lib/seo.ts` 의 **`FAIR_ORG_ID` · `FAIR_REP_ID` · `FAIR_SAME_AS`** 는
+`global-hr-portal/src/lib/seo/jsonLd.ts` 의 같은 이름 상수와 **값이 같아야 한다.**
+
+두 사이트가 **같은 `@id` 로 같은 조직을 선언**해야 검색엔진·AI 가 하나의 엔티티로 합친다.
+한쪽만 고치면 합쳐지기는커녕 **별개 주체로 갈라져** 안 고친 것만 못하다.
+
+- `sameAs` 는 "동일 주체"라는 주장이다. **PlusTAI 계열은 독립 자회사라 넣지 않는다.**
+- 영문 화면(`app/en/global-companies`)의 조직 선언도 같은 `@id` 를 쓴다 —
+  전에는 식별자가 없어 국문과 다른 조직처럼 보였다.
+- 배경: `company/reports/2026-09-14-GEO영상-시사점.md`
+
 ## 뉴스레터 본문 표기
 
 `lib/newsletterPosts.ts` 의 `p`·`ul` 블록은 `**굵게**` 표기를 지원한다
