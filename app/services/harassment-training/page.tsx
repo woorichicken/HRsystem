@@ -151,6 +151,10 @@ const CURRICULUM = [
  */
 const RELATED_POSTS = [
   {
+    href: "/board/bukhansan-dobong-harassment-education-2026",
+    title: "[공익활동] 북한산국립공원 도봉사무소 직장 내 괴롭힘 예방교육",
+  },
+  {
     href: "/board/uijeongbu-eulji-hospital-harassment-education",
     title: "[공익활동] 의정부을지대학교병원 직장 내 괴롭힘 예방교육",
   },
