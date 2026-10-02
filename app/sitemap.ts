@@ -150,10 +150,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      // 2026-10-02 「준비 중」 안내에서 실제 사전(표제어 132개)으로 바뀌어 우선순위를 올렸다.
       url: `${baseUrl}/global-companies/glossary`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
-      priority: 0.5,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
