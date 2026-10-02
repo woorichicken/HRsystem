@@ -30,10 +30,18 @@ interface NavSubItem {
   href: string
   title: string
   description: string
+  /**
+   * 다른 도메인으로 나가는 항목(예: 회원사 공간 global.fairhr.net).
+   * 새 창으로 열고 아이콘을 붙인다 — 사이트를 떠난다는 것이 보여야 한다.
+   */
+  external?: boolean
 }
 
 // FAIR CRM 플랫폼 로그인 URL (기획서 기준: efm.fairhr.net 외부 링크)
 const CRM_LOGIN_URL = "https://efm.fairhr.net"
+// 글로벌 HR 자문 포털 — 외국계기업 지원센터의 회원사 공간 (2026-10-02 정식 오픈).
+// ⚠️ 대외 명칭은 "글로벌 HR 자문 포털"이다. "SaaS"는 내부 프로젝트명으로만 쓴다.
+const GLOBAL_PORTAL_URL = "https://global.fairhr.net"
 // 네이버 블로그 (대표 블로그)
 const BLOG_URL = "https://blog.naver.com/fairhr"
 
@@ -52,7 +60,13 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
             )}
             {...props}
           >
-            <div className="text-sm font-semibold leading-none text-foreground">{title}</div>
+            <div className="flex items-center gap-1.5 text-sm font-semibold leading-none text-foreground">
+              {title}
+              {/* 새 창으로 열리는 항목(다른 도메인)임을 아이콘으로 알린다 */}
+              {props.target === "_blank" && (
+                <ExternalLink aria-hidden className="h-3.5 w-3.5 shrink-0 text-primary" />
+              )}
+            </div>
             <p className="line-clamp-2 text-xs leading-snug text-muted-foreground mt-1">{children}</p>
           </a>
         </NavigationMenuLink>
@@ -119,6 +133,14 @@ export default function Header() {
           href: "/global-companies",
           title: t('globalCompaniesMenu.intro.title'),
           description: t('globalCompaniesMenu.intro.description'),
+        },
+        // 회원사 공간 — 소개 바로 다음에 둔다 (CEO 지시 2026-10-02).
+        // 회원사는 이 항목을 반복해서 쓰므로 목록 끝에 두면 매번 찾아 내려가야 한다.
+        {
+          href: GLOBAL_PORTAL_URL,
+          title: t('globalCompaniesMenu.memberSpace.title'),
+          description: t('globalCompaniesMenu.memberSpace.description'),
+          external: true,
         },
         {
           href: "/global-companies/hr-news",
@@ -229,7 +251,15 @@ export default function Header() {
                     <NavigationMenuContent className="min-w-[400px] p-4">
                       <ul className="grid w-full gap-2 grid-cols-1">
                         {item.children.map((child) => (
-                          <ListItem key={child.title} href={child.href} title={child.title}>
+                          <ListItem
+                            key={child.title}
+                            href={child.href}
+                            title={child.title}
+                            // 다른 도메인은 새 창으로. rel 은 target="_blank" 와 짝이다.
+                            {...(child.external
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
+                          >
                             {child.description}
                           </ListItem>
                         ))}
@@ -322,16 +352,31 @@ export default function Header() {
                           <ChevronDown className="h-4 w-4 text-gray-500" />
                         </div>
                         <div className="grid gap-1 pl-4 py-2 bg-gray-50 rounded-lg ml-2 mr-2">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.title}
-                              href={child.href}
-                              className="text-sm text-gray-600 hover:text-primary px-3 py-2 rounded-md hover:bg-white transition-colors"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {child.title}
-                            </Link>
-                          ))}
+                          {item.children.map((child) =>
+                            // 다른 도메인은 next/link 가 아니라 평범한 <a> 로 — 새 창으로 연다.
+                            child.external ? (
+                              <a
+                                key={child.title}
+                                href={child.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary px-3 py-2 rounded-md hover:bg-white transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                {child.title}
+                                <ExternalLink aria-hidden className="h-3.5 w-3.5 shrink-0 text-primary" />
+                              </a>
+                            ) : (
+                              <Link
+                                key={child.title}
+                                href={child.href}
+                                className="text-sm text-gray-600 hover:text-primary px-3 py-2 rounded-md hover:bg-white transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                {child.title}
+                              </Link>
+                            ),
+                          )}
                         </div>
                       </div>
                     ) : (

@@ -2,7 +2,17 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, Scale, FileText, FileDown, Landmark, ShieldCheck, BookOpen } from "lucide-react"
+import {
+  ArrowRight,
+  Scale,
+  FileText,
+  FileDown,
+  Landmark,
+  ShieldCheck,
+  BookOpen,
+  ExternalLink,
+  LogIn,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { YouTubeVideo } from "@/components/youtube-video"
 import { GLOBAL_FAQS } from "./faqData"
@@ -12,6 +22,16 @@ import { GLOBAL_FAQS } from "./faqData"
  * ⚠️ 영상을 바꾸면 여기 id 만 고친다 — 주소 전체가 아니라 https://youtu.be/<id> 의 뒷부분.
  */
 const CENTER_VIDEO_ID = "XrxlvFNKHEg"
+
+/**
+ * 회원사 공간 — 글로벌 HR 자문 포털 (2026-10-02 정식 오픈, CEO 지시로 링크 신설).
+ *
+ * ⚠️ 대외 명칭은 "글로벌 HR 자문 포털"이다. "SaaS"는 내부 프로젝트명으로만 쓴다.
+ * ⚠️ 다른 도메인이라 next/link 가 아니라 평범한 <a> 로 걸고 새 창으로 연다.
+ *    헤더의 CRM 로그인(efm.fairhr.net)과 같은 방식이다.
+ */
+const GLOBAL_PORTAL_URL = "https://global.fairhr.net"
+const GLOBAL_PORTAL_GLOSSARY_URL = "https://global.fairhr.net/about/glossary"
 
 /**
  * 사용설명서 PDF (public/docs/).
@@ -155,6 +175,14 @@ export default function GlobalCompaniesClientPage() {
                   자문 상담 신청 <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
+              {/* 회원사 공간 — 기존 회원사가 반복해서 쓰는 입구라 머리 화면에 둔다 */}
+              <a href={GLOBAL_PORTAL_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="px-8 gap-1.5">
+                  <LogIn className="h-4 w-4" />
+                  회원사 공간
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </Button>
+              </a>
               <Link href="/about/greeting">
                 <Button size="lg" variant="outline" className="px-8">
                   대표 노무사 소개
@@ -341,6 +369,58 @@ export default function GlobalCompaniesClientPage() {
       </section>
 
       {/* CTA */}
+      {/* 회원사 공간 안내 — 포털 정식 오픈(2026-10-02)에 맞춰 신설 */}
+      <section className="w-full bg-white py-12 sm:py-16">
+        <div className="container-fluid max-w-5xl px-4">
+          <div className="overflow-hidden rounded-2xl border border-blue-900/20 bg-white">
+            <div className="h-1 w-full bg-primary" />
+            <div className="p-6 sm:p-8">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <LogIn className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <h2 className="break-keep text-lg font-bold text-gray-900 sm:text-xl">
+                    회원사 공간을 열었습니다
+                  </h2>
+                  <p className="break-keep text-xs text-muted-foreground sm:text-sm">
+                    글로벌 HR 자문 포털 · global.fairhr.net
+                  </p>
+                </div>
+              </div>
+              <p className="break-keep text-sm leading-relaxed text-gray-700 sm:text-base">
+                자문 회원사는 <b>회원사 전용 Q&amp;A</b>로 질의하고, 그 이력과 자료를 한 곳에서
+                보실 수 있습니다. 자료실·AI 진단·계산기 5종·개정법 알림·HR 서식을 함께
+                담았습니다. 질의를 올릴 때 <b>본사 공유 여부를 담당자가 직접 선택</b>하실 수
+                있습니다.
+              </p>
+              <p className="mt-3 break-keep text-sm leading-relaxed text-gray-700 sm:text-base">
+                이용은 이메일·비밀번호 로그인이며, 계정은 FAIR인사노무컨설팅이 발급해
+                드립니다. 공개 영역의 <b>노동법 한영사전</b>은 로그인 없이 쓰실 수 있습니다.
+              </p>
+              <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row">
+                <a href={GLOBAL_PORTAL_URL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="gap-1.5 px-8">
+                    회원사 공간 들어가기
+                    <ExternalLink className="h-4 w-4" />
+                  </Button>
+                </a>
+                <a
+                  href={GLOBAL_PORTAL_GLOSSARY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-6 py-3 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-50"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  노동법 한영사전
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="w-full bg-white py-14 sm:py-20">
         <div className="container-fluid max-w-5xl px-4">
           <div className="rounded-2xl bg-primary text-primary-foreground p-8 sm:p-10 text-center">
