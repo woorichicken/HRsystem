@@ -1,7 +1,13 @@
 "use client"
 
 /**
- * AI 상담 도우미(세일즈 에이전트) — FAIR인사노무컨설팅.
+ * FAIR 도우미(세일즈 에이전트) — FAIR인사노무컨설팅.
+ *
+ * ⚠️ 화면에 보이는 **명칭은 「FAIR 도우미」 하나로 맞춘다**(CEO 지시 2026-10-04).
+ *    종전에는 런처가 「1분 상담」, 말풍선이 「1분 상담 도우미」, 패널 머리가
+ *    「AI 상담 도우미」로 세 가지였다.
+ *    ⚠️ 명칭을 또 바꾸면 **개인정보 처리방침(app/privacy/page.tsx)의 같은 말도
+ *       함께 고쳐야 한다** — 처리방침이 없는 기능을 가리키면 그 자체가 흠결이다.
  *
  * 4단계(규모·업종·고민·현재 상태)를 버튼으로 물어보고,
  * 규칙 기반 서비스 추천 + LLM 요약(보조)을 보여준 뒤 진단/서비스/카톡으로 연결한다.
@@ -168,7 +174,7 @@ export default function SalesAgentWidget() {
           onClick={openPanel}
           className="fixed bottom-36 right-5 z-40 max-w-[15rem] rounded-2xl rounded-br-sm bg-white px-4 py-3 text-left text-sm text-gray-700 shadow-lg ring-1 ring-gray-200 transition hover:ring-primary/40 sm:bottom-40 sm:right-6"
         >
-          <span className="block font-bold text-gray-900">1분 상담 도우미</span>
+          <span className="block font-bold text-gray-900">FAIR 도우미</span>
           우리 회사에 맞는 게 뭔지 알려드릴까요?
         </button>
       )}
@@ -178,11 +184,11 @@ export default function SalesAgentWidget() {
         <button
           type="button"
           onClick={openPanel}
-          aria-label="AI 상담 도우미 열기"
+          aria-label="FAIR 도우미 열기"
           className="fixed bottom-20 right-5 z-40 flex items-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg ring-1 ring-black/5 transition-transform hover:scale-105 sm:bottom-24 sm:right-6"
         >
           <MessageSquareText className="h-5 w-5" />
-          <span className="hidden sm:inline">1분 상담</span>
+          <span className="hidden sm:inline">FAIR 도우미</span>
         </button>
       )}
 
@@ -192,7 +198,7 @@ export default function SalesAgentWidget() {
           <div className="flex items-center justify-between bg-primary px-4 py-3 text-primary-foreground">
             <div className="flex items-center gap-2">
               <MessageSquareText className="h-5 w-5" />
-              <span className="text-sm font-bold">AI 상담 도우미</span>
+              <span className="text-sm font-bold">FAIR 도우미</span>
             </div>
             <button
               type="button"
