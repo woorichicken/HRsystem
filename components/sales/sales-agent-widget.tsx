@@ -288,8 +288,17 @@ function ResultView({
         <p className="text-xs font-semibold text-gray-500">추천 서비스</p>
         <p className="mt-0.5 text-base font-extrabold text-gray-900">{primary.label}</p>
         {alt && (
+          // 대안도 누를 수 있어야 한다(2026-10-04). 전에는 글자만 보여 줬는데,
+          // 괴롭힘 예방교육·한영사전처럼 **대안 자리에만 나오는 화면**이 있어
+          // 링크가 없으면 거기까지 가는 길이 없었다.
           <p className="mt-1 text-xs text-gray-500">
-            함께 보면 좋은 것: <span className="font-semibold">{alt.label}</span>
+            함께 보면 좋은 것:{" "}
+            <Link
+              href={alt.href}
+              className="font-semibold text-primary underline decoration-primary/30 underline-offset-2 hover:decoration-primary"
+            >
+              {alt.label}
+            </Link>
           </p>
         )}
       </div>

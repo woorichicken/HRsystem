@@ -36,6 +36,10 @@ export const CONCERN_OPTIONS: Option<ConsultConcern>[] = [
   { value: "safety", label: "산업안전·중대재해" },
   { value: "freelancer", label: "프리랜서·3.3 근로자성" },
   { value: "hr_system", label: "인사제도·평가·성과관리" },
+  // 2026-10-04 추가 — AX 컨설팅과 외국계기업 지원센터(글로벌 HR 자문 포털·한영사전)를
+  // 열면서 넣었다. 「전반적으로」는 받는 그릇이라 맨 뒤에 둔다.
+  { value: "ax", label: "AI 도입·업무 재설계 (AX)" },
+  { value: "global", label: "외국계 본사 대응·영문 문서" },
   { value: "overall", label: "전반적으로 점검받고 싶다" },
 ]
 
@@ -54,8 +58,16 @@ export const TARGET_META: Record<RecommendTarget, { label: string; href: string 
   "serious-accident-law": { label: "중대재해처벌법 컨설팅", href: "/services/serious-accident-law" },
   "labor-disputes": { label: "노동분쟁 해결", href: "/services/labor-disputes" },
   "workplace-harassment": { label: "직장 내 괴롭힘 조사 수행", href: "/services/workplace-harassment" },
+  "harassment-training": {
+    label: "직장 내 괴롭힘 예방교육",
+    href: "/services/harassment-training",
+  },
   freelancer: { label: "프리랜서 진단과 관리", href: "/services/freelancer" },
   "hr-risk-diagnosis": { label: "HR 리스크 진단", href: "/services/hr-risk-diagnosis" },
+  // 2026-10-04 추가 — 경로는 전건 실재 확인했다(/services/* 가 아닌 것이 섞여 있다).
+  "ax-consulting": { label: "AX 컨설팅", href: "/hr-tech/ax-consulting" },
+  "global-companies": { label: "외국계기업 지원센터", href: "/global-companies" },
+  glossary: { label: "FAIR 노동법 한영사전", href: "/global-companies/glossary" },
 }
 
 export const sizeLabel = (v: ConsultSize) => SIZE_OPTIONS.find((o) => o.value === v)?.label ?? v

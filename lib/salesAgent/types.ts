@@ -28,6 +28,8 @@ export type ConsultConcern =
   | "safety" // 산업안전·중대재해
   | "freelancer" // 프리랜서·3.3 근로자성
   | "hr_system" // 인사제도·평가·성과관리
+  | "ax" // AI 도입·업무 재설계 (2026-10-04 추가)
+  | "global" // 외국계 본사 대응·영문 문서 (2026-10-04 추가)
   | "overall" // 전반 점검
 
 /** 현재 노무 관리 상태. */
@@ -40,7 +42,11 @@ export interface ConsultAnswers {
   status: ConsultStatus
 }
 
-/** 추천 대상 — FAIR 서비스 슬러그. */
+/**
+ * 추천 대상 — FAIR 서비스 슬러그.
+ * ⚠️ 여기에 더하면 `TARGET_META`(options.ts)에 라벨·경로를 **반드시 함께** 넣는다.
+ *    타입만 넓히면 추천은 되는데 화면에서 undefined 를 읽는다.
+ */
 export type RecommendTarget =
   | "labor-consulting"
   | "payroll-system"
@@ -48,8 +54,12 @@ export type RecommendTarget =
   | "serious-accident-law"
   | "labor-disputes"
   | "workplace-harassment"
+  | "harassment-training"
   | "freelancer"
   | "hr-risk-diagnosis"
+  | "ax-consulting"
+  | "global-companies"
+  | "glossary"
 
 export interface Recommendation {
   /** 1순위 추천 서비스. */
