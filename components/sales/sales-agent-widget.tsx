@@ -175,7 +175,7 @@ export default function SalesAgentWidget() {
           className="fixed bottom-36 right-5 z-40 max-w-[15rem] rounded-2xl rounded-br-sm bg-white px-4 py-3 text-left text-sm text-gray-700 shadow-lg ring-1 ring-gray-200 transition hover:ring-primary/40 sm:bottom-40 sm:right-6"
         >
           <span className="block font-bold text-gray-900">FAIR 도우미</span>
-          우리 회사에 맞는 게 뭔지 알려드릴까요?
+          우리 회사에 맞는 것이 무엇인지 알려드릴까요?
         </button>
       )}
 
