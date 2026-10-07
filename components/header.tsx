@@ -118,6 +118,13 @@ export default function Header() {
           title: t('fairCrmMenu.axConsulting.title'),
           description: t('fairCrmMenu.axConsulting.description'),
         },
+        // 맞춤형 ERP — AX 컨설팅과 플러스 티 에이아이 사이 (CEO 지시 2026-10-07).
+        // 순서에 뜻이 있다: 다시 설계하고(AX) → 그 설계대로 만들고(ERP) → 제품으로 낸다(플러스 티 에이아이).
+        {
+          href: "/hr-tech/erp",
+          title: t('fairCrmMenu.erp.title'),
+          description: t('fairCrmMenu.erp.description'),
+        },
         {
           href: "/plustai",
           title: t('fairCrmMenu.plustai.title'),

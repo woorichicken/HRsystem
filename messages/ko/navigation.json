@@ -102,6 +102,10 @@
       "title": "AX 컨설팅",
       "description": "AI 도입 전에 업무를 다시 설계하는 7단계 모델(7-Stage Model)"
     },
+    "erp": {
+      "title": "회사 맞춤형 ERP 체계 구축",
+      "description": "AI로 기존 ERP를 업그레이드하거나 회사에 맞는 ERP를 새로 구축"
+    },
     "plustai": {
       "title": "플러스 티 에이아이",
       "description": "자회사 소개와 HR 리스크 AI 진단 서비스 라인업"

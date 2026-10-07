@@ -102,6 +102,10 @@
       "title": "AXコンサルティング",
       "description": "AI導入の前に業務を再設計する7段階モデル(7-Stage Model)"
     },
+    "erp": {
+      "title": "企業別オーダーメイドERP構築",
+      "description": "AIで既存ERPをアップグレード、または自社専用ERPを新規構築"
+    },
     "plustai": {
       "title": "プラス・ティ・エーアイ",
       "description": "子会社紹介とHRリスクAI診断サービスのラインナップ"
