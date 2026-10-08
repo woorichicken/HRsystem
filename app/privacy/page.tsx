@@ -9,12 +9,12 @@ export default function PrivacyPolicyPage() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">개인정보처리방침</h1>
-          <p className="mt-4 text-lg text-muted-foreground">최종 수정일: 2026년 7월 27일</p>
+          <p className="mt-4 text-lg text-muted-foreground">최종 수정일: 2026년 10월 8일</p>
         </div>
 
         <div className="prose dark:prose-invert max-w-none space-y-6">
           <p>
-            노무법인 [법인명](이하 '법인')은 개인정보보호법 등 관련 법령상의 개인정보보호 규정을 준수하며, 관련 법령에
+            FAIR인사노무컨설팅(이하 '법인')은 개인정보보호법 등 관련 법령상의 개인정보보호 규정을 준수하며, 관련 법령에
             의거한 개인정보처리방침을 정하여 이용자 권익 보호에 최선을 다하고 있습니다.
           </p>
 
@@ -36,6 +36,10 @@ export default function PrivacyPolicyPage() {
             <li>
               고객 관리: 고객 식별, 불만 처리 등 민원사무 처리, 고지사항 전달 등을 목적으로 개인정보를 처리합니다.
             </li>
+            <li>
+              FAIR ERP 회원 관리: FAIR ERP(erp.fairhr.net · efm.fairhr.net) 회원 가입과 로그인(구글 계정 로그인 포함),
+              회원 식별, 조직 구성원 초대·관리 등 서비스 제공을 목적으로 개인정보를 처리합니다.
+            </li>
           </ol>
 
           <h2 className="text-2xl font-semibold">제2조 (처리하는 개인정보 항목)</h2>
@@ -43,6 +47,11 @@ export default function PrivacyPolicyPage() {
           <ul className="list-disc pl-6">
             <li>필수항목: 성명, 연락처 (휴대폰 번호), 이메일 주소</li>
             <li>선택항목: 회사명, 직책, 문의 내용에 포함된 개인정보, 첨부파일에 포함된 개인정보 등</li>
+            <li>
+              FAIR ERP 회원: 이름, 아이디, 이메일 주소, 비밀번호(암호화하여 저장), 소속 조직명. 구글 계정으로 가입·로그인하는
+              경우 Google로부터 이름, 이메일 주소, 구글 계정 고유 식별자를 제공받으며, 구글 계정의 비밀번호는 제공받지
+              않습니다.
+            </li>
             {/*
               NOTE(수탁자 고지 정합성): 아래 분석 도구 표기는 실제 코드 기준이다.
               - Vercel Analytics: app/layout.tsx 의 <Analytics />
@@ -69,6 +78,7 @@ export default function PrivacyPolicyPage() {
               서비스 제공 관련 정보: 서비스 제공 완료 및 요금결제·정산 완료 후 5년 (상법 등 관련 법령 규정에 따름)
             </li>
             <li>웹사이트 방문 기록: 3개월 (통신비밀보호법)</li>
+            <li>FAIR ERP 회원 정보: 회원 탈퇴 시까지 (단, 관계 법령에 따라 보존할 필요가 있는 경우 해당 기간까지)</li>
           </ol>
 
           <h2 className="text-2xl font-semibold">제4조 (방문·이용 분석 및 개인정보 처리위탁·국외이전)</h2>
