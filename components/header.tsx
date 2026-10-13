@@ -221,6 +221,18 @@ export default function Header() {
     { href: "/contact", label: t('mainNav.contact') },
   ]
 
+  /**
+   * 우측 정렬할 드롭다운의 자리번호 — **자식이 있는 항목 중 마지막 둘.**
+   *
+   * 메뉴 바 오른쪽 끝에 있는 드롭다운은 왼쪽 정렬하면 화면을 넘는다
+   * (1024px 에서 「서비스」가 120px 잘렸다). 이름을 박지 않고 자리로 판단하므로
+   * 메뉴를 더하거나 빼도 규칙이 그대로 유지된다.
+   */
+  const rightAlignedDropdowns = navItems
+    .map((it, i) => (it.children ? i : -1))
+    .filter((i) => i >= 0)
+    .slice(-2)
+
   // 로컬 스토리지에서 언어 가져오기
   useEffect(() => {
     const savedLocale = localStorage.getItem('locale') || 'ko';
@@ -249,13 +261,26 @@ export default function Header() {
         <div className="hidden lg:flex items-center gap-4">
           <NavigationMenu>
             <NavigationMenuList className="gap-1">
-              {navItems.map((item) =>
+              {navItems.map((item, idx) =>
                 item.children ? (
                   <NavigationMenuItem key={item.label}>
                     <NavigationMenuTrigger className="text-sm font-medium text-gray-700 hover:text-primary transition-colors bg-transparent hover:bg-gray-50 data-[state=open]:bg-gray-50 data-[state=open]:text-primary h-10 px-4 py-2">
                       {item.label}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="min-w-[400px] p-4">
+                    {/*
+                      오른쪽 끝 두 드롭다운은 **우측 정렬**한다 (2026-10-13).
+                      드롭다운은 400px 인데 1024px(데스크톱 메뉴가 나타나는 폭)에서
+                      왼쪽 정렬하면 「서비스」가 화면 밖으로 120px 밀려 잘린다.
+
+                      ⚠️ `navItems` 의 마지막 둘로 세면 안 된다 — 뒤쪽 항목
+                         (공지사항·뉴스레터·상담신청)은 드롭다운이 없는 평범한 링크라서
+                         서비스가 안 걸린다. 처음에 그렇게 짰다가 정렬이 안 먹었다.
+                         **자식이 있는 항목만 추려** 그중 마지막 둘을 본다.
+                    */}
+                    <NavigationMenuContent
+                      className="min-w-[400px] p-4"
+                      align={rightAlignedDropdowns.includes(idx) ? "end" : "start"}
+                    >
                       <ul className="grid w-full gap-2 grid-cols-1">
                         {item.children.map((child) => (
                           <ListItem

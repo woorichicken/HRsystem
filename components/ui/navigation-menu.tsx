@@ -18,7 +18,21 @@ const NavigationMenu = React.forwardRef<
     {...props}
   >
     {children}
-    <NavigationMenuViewport />
+    {/*
+      ⚠️ 공용 Viewport 를 쓰지 않는다 (CEO 지적 2026-10-13 — "다른 곳에 바가 나와서
+         누르기가 어렵다, 특히 서비스").
+
+      shadcn 기본값은 모든 드롭다운을 **메뉴 바 전체의 왼쪽 끝**에 띄운다
+      (`absolute left-0`). 트리거가 아니라 nav 의 왼쪽에 붙으므로, 오른쪽 메뉴일수록
+      자기 버튼에서 멀어진다. 1440px 에서 실측하니 「서비스」 트리거는 744~831 인데
+      드롭다운은 134~534 — **610px 왼쪽**에 떴다. 누르려면 대각선으로 마우스를
+      옮겨야 하고, 그 사이 메뉴가 닫힌다.
+
+      그래서 Viewport 를 떼고 Content 가 **자기 NavigationMenuItem 아래**에 직접
+      뜨게 한다(Radix 는 Viewport 가 없으면 Content 를 Item 안에 그린다).
+      Viewport 가 담당했던 테두리·배경·그림자는 Content 로 옮겼다.
+      ⚠️ Viewport 를 되살리면 이 증상이 그대로 돌아온다.
+    */}
   </NavigationMenuPrimitive.Root>
 ))
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
@@ -38,7 +52,17 @@ const NavigationMenuList = React.forwardRef<
 ))
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 
-const NavigationMenuItem = NavigationMenuPrimitive.Item
+/**
+ * 드롭다운이 이 항목을 기준으로 떠야 하므로 `relative` 를 준다.
+ * 이게 없으면 Content 의 `absolute` 가 조상(nav)을 기준으로 잡혀 종전 증상이 된다.
+ */
+const NavigationMenuItem = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <NavigationMenuPrimitive.Item ref={ref} className={cn("relative", className)} {...props} />
+))
+NavigationMenuItem.displayName = NavigationMenuPrimitive.Item.displayName
 
 const navigationMenuTriggerStyle = cva(
   "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
@@ -64,12 +88,24 @@ NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName
 
 const NavigationMenuContent = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content> & {
+    /**
+     * 트리거의 어느 쪽에 맞출지. 기본은 왼쪽(`start`).
+     * 오른쪽 끝 메뉴는 `end` 를 줘야 화면 밖으로 밀리지 않는다 — 1024px 에서
+     * 왼쪽 정렬한 「서비스」가 110px 잘렸다.
+     */
+    align?: "start" | "end"
+  }
+>(({ className, align = "start", ...props }, ref) => (
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto ",
+      // 자기 트리거 바로 아래에 띄운다. `mt-1.5` 는 종전 Viewport 와 같은 간격이다.
+      "absolute top-full z-50 mt-1.5 w-auto",
+      align === "end" ? "right-0" : "left-0",
+      // Viewport 가 담당했던 겉모양 — 떼어 냈으니 여기서 그린다.
+      "overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg",
+      "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
       className
     )}
     {...props}
