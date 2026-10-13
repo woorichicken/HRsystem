@@ -67,6 +67,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
+    {
+      // 전용 라우트라 SERVICE_DETAIL_SLUGS(동적 [slug])에 들어가지 않는다 — 따로 적는다.
+      url: `${baseUrl}/services/labor-inspection`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
     ...SERVICE_DETAIL_SLUGS.map((slug) => ({
       url: `${baseUrl}/services/${slug}`,
       lastModified: new Date(),

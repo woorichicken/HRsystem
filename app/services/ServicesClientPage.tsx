@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import { CheckCircle, Briefcase, Calculator, Users, Shield, Scale, MessageCircle, ArrowRight, UserCheck, Activity, Handshake } from "lucide-react"
+import { CheckCircle, Briefcase, Calculator, Users, Shield, Scale, MessageCircle, ArrowRight, UserCheck, Activity, Handshake, ClipboardCheck } from "lucide-react"
 import { motion } from "framer-motion"
 import { useTranslations } from 'next-intl'
 import PageBanner from "@/components/page-banner"
@@ -11,6 +11,9 @@ const iconMap = {
   "hr-risk-diagnosis": Activity,
   "freelancer": UserCheck,
   "labor-consulting": Briefcase,
+  // ⚠️ `messages/*/services.json` 에 서비스를 더하면 여기에도 아이콘을 넣는다.
+  //    빠뜨리면 조용히 기본 아이콘(Briefcase)으로 떨어져 다른 카드와 구분이 안 된다.
+  "labor-inspection": ClipboardCheck,
   "payroll-system": Calculator,
   "hr-consulting": Users,
   "serious-accident-law": Shield,

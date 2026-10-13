@@ -41,6 +41,17 @@
       ]
     },
     {
+      "id": "labor-inspection",
+      "title": "Labor Inspection Readiness",
+      "shortDescription": "Find what would be flagged before the inspection arrives",
+      "details": [
+        "Review of 28 checkpoints across 7 areas: contracts, pay, working hours, leave, safety, severance, rules",
+        "Per-item findings, area grades and a prioritised action list",
+        "Clean-up of employment contracts, work rules, pay statements and time records",
+        "Support with document submission on site and with corrective orders"
+      ]
+    },
+    {
       "id": "payroll-system",
       "title": "Payroll System Consulting",
       "shortDescription": "Optimization consulting for payroll systems including ordinary wages and average wages",
