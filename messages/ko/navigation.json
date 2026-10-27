@@ -149,6 +149,10 @@
       "title": "HR Compliance 조사",
       "description": "괴롭힘·성희롱·가이드라인·영업비밀·경업금지 위반을 중립적 외부 조사로 확인"
     },
+    "maDueDiligence": {
+      "title": "인수합병에 따른 Labor 실사",
+      "description": "매각·인수 때 고용 승계·우발채무·인력 조정을 거래 구조별로 점검"
+    },
     "glossary": {
       "title": "FAIR 노동법 한영사전",
       "description": "한글 용어를 검색하면 영어 대응어를 출처·등급과 함께 확인"

@@ -164,6 +164,12 @@ export default function Header() {
           title: t('globalCompaniesMenu.investigation.title'),
           description: t('globalCompaniesMenu.investigation.description'),
         },
+        // HR Compliance 조사와 한영사전 사이 (CEO 지시 2026-10-27).
+        {
+          href: "/global-companies/ma-due-diligence",
+          title: t('globalCompaniesMenu.maDueDiligence.title'),
+          description: t('globalCompaniesMenu.maDueDiligence.description'),
+        },
         {
           href: "/global-companies/glossary",
           title: t('globalCompaniesMenu.glossary.title'),
