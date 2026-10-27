@@ -106,7 +106,7 @@ export const MA_BODY: MemoBlock[] = [
       { label: "상법 (국가법령정보센터)", href: "https://www.law.go.kr/법령/상법" },
       { label: "근로자참여 및 협력증진에 관한 법률 (국가법령정보센터)", href: "https://www.law.go.kr/법령/근로자참여및협력증진에관한법률" },
       { label: "개인정보 보호법 (국가법령정보센터)", href: "https://www.law.go.kr/법령/개인정보보호법" },
-      { label: "계기가 된 기사 — 딜사이트 (2026. 10. 26.)", href: "https://dealsite.co.kr/articles/171190" },
+      { label: "참고한 기사 — 딜사이트 (2026. 10. 26.)", href: "https://dealsite.co.kr/articles/171190" },
     ],
   },
   {
