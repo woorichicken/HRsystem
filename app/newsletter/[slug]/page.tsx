@@ -9,6 +9,7 @@ import {
   type Block,
 } from "@/lib/newsletterPosts"
 import { breadcrumbJsonLd } from "@/lib/seo"
+import { tagLabel, tagsWithPages } from "@/lib/newsletterTags"
 
 const SITE = "https://www.fairhr.net"
 const BLOG_URL = "https://blog.naver.com/fairhr"
@@ -29,6 +30,9 @@ export async function generateMetadata({
   return {
     title: `${post.title} | FAIR인사노무컨설팅`,
     description: post.summary,
+    // 주제 태그를 keywords 로도 낸다. 구글은 meta keywords 를 보지 않지만 네이버 쪽에
+    // 약간 보탬이 되고, 값이 이미 있어 따로 적을 것이 없다.
+    keywords: post.tags.map(tagLabel),
     alternates: { canonical: `${SITE}/newsletter/${post.slug}` },
     openGraph: {
       type: "article",
@@ -122,6 +126,9 @@ export default async function NewsletterPostPage({
   const post = getNewsletterPost(slug)
   if (!post) notFound()
 
+  /** 목록 페이지가 있는 태그만 링크를 건다 — 없는 주소로 보내지 않기 위해서다. */
+  const linkedTags = tagsWithPages(NEWSLETTER_POSTS)
+
   // 구조화 데이터 — 빵부스러기 경로(BreadcrumbList).
   const crumbsJsonLd = breadcrumbJsonLd([
     { name: "홈", path: "/" },
@@ -179,6 +186,36 @@ export default async function NewsletterPostPage({
             <BlockView key={i} block={block} />
           ))}
         </div>
+
+        {/* 주제 태그 — 같은 주제 묶음으로 보낸다.
+            ⚠️ 글이 2건 이상인 태그만 링크가 걸린다(`tagsWithPages`). 한 건짜리는
+               목록 페이지를 만들지 않으므로 글자로만 보인다. 끊긴 링크를 만들지 않기 위해
+               화면·사이트맵·태그 페이지가 모두 같은 함수를 본다. */}
+        {post.tags.length > 0 && (
+          <section className="mt-12 border-t border-gray-100 pt-8">
+            <h2 className="text-base font-bold text-gray-900 sm:text-lg">주제</h2>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {post.tags.map((t) =>
+                linkedTags.includes(t) ? (
+                  <Link
+                    key={t}
+                    href={`/newsletter/tag/${t}`}
+                    className="rounded-full border border-border/60 bg-white px-3 py-1.5 text-sm text-gray-700 transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+                  >
+                    {tagLabel(t)}
+                  </Link>
+                ) : (
+                  <span
+                    key={t}
+                    className="rounded-full border border-border/60 bg-gray-50 px-3 py-1.5 text-sm text-gray-500"
+                  >
+                    {tagLabel(t)}
+                  </span>
+                ),
+              )}
+            </div>
+          </section>
+        )}
 
         {/* 함께 보기 — 관련 서비스·상담 내부링크(SEO) */}
         <section className="mt-12">

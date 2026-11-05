@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getBoardPosts } from '@/lib/board'
 import { NEWSLETTER_POSTS } from '@/lib/newsletterPosts'
+import { tagsWithPages } from '@/lib/newsletterTags'
 import { SERVICE_DETAIL_SLUGS } from '@/lib/serviceDetails'
 import { NEWS_ISSUES } from '@/app/global-companies/hr-news/newsData'
 import { SITE_URL } from '@/lib/seo'
@@ -199,6 +200,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(p.date),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
+    })),
+    // 주제별 묶음 — **글이 2건 이상인 태그만** 올린다(tagsWithPages 가 그 기준을 쥔다).
+    // 화면·사이트맵·태그 페이지가 같은 함수를 보므로 셋이 어긋나지 않는다.
+    // 한 건짜리 묶음까지 올리면 내용 없는 페이지를 검색엔진에 들이미는 꼴이 된다.
+    ...tagsWithPages(NEWSLETTER_POSTS).map((tag) => ({
+      url: `${baseUrl}/newsletter/tag/${tag}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
     })),
     {
       url: `${baseUrl}/privacy`,
