@@ -22,6 +22,10 @@ export const NEWSLETTER_TAGS = {
   inspection: "근로감독",
   harassment: "직장 내 괴롭힘",
   dismissal: "해고·징계",
+  // 2026-11-12 추가(CEO 지시) — 노란봉투법 시행으로 원·하청 교섭 사건이 늘고 있다.
+  // ⚠️ 지금은 글이 1건이라 **목록 페이지가 만들어지지 않는다**(글자로만 보인다).
+  //    2건째가 붙는 날 `tagsWithPages` 가 자동으로 페이지를 열고 사이트맵에도 올린다.
+  collective: "집단적 노사관계",
   global: "외국계기업",
   hrtech: "HR테크",
   "law-change": "법 개정",
